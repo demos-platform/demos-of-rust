@@ -5,6 +5,7 @@ use rand::Rng;
 
 fn main() {
     println!("Welcome to guess game");
+    // Todo：待确认，上文第 4 行使用 use rand::Rng 后，为啥此处可以使用 rand::thread_rng().gen_range()
     let secret_number = rand::thread_rng().gen_range(1, 101);
 
     loop {
