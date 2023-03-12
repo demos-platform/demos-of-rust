@@ -3,6 +3,27 @@ use std::io;
 use std::cmp::Ordering;
 use rand::Rng;
 
+// Todo: 关于第 9 章提到的使用 Guess 结构体来实现校验输入数字的通用性。后续可做进一步尝试。
+pub struct Guess {
+    value: i32,
+}
+
+impl Guess {
+    pub fn new(value: i32) -> Guess {
+        if value < 1 || value > 100 {
+            panic!("Guess value must be between 1 and 100, got {}.", value);
+        }
+
+        Guess {
+            value
+        }
+    }
+
+    pub fn value(&self) -> i32 {
+        self.value
+    }
+}
+
 fn main() {
     println!("Welcome to guess game");
     // Todo：待确认，上文第 4 行使用 use rand::Rng 后，为啥此处可以使用 rand::thread_rng().gen_range()
@@ -23,6 +44,12 @@ fn main() {
         };
         // 为啥此处 guess 不需要 mut。分析为该 guess 变量在此处使用无需变更。
         println!("You guessed: {}", guess);
+
+        // Todo: 使用 Guess 结构体优化此处，以达到校验数字校验的目的。
+        if guess < 1 || guess > 100 {
+            println!("The secret number will be between 1 and 100.");
+            continue;
+        }
 
         match guess.cmp(&secret_number) {
             Ordering::Less => println!("Too small!"),
