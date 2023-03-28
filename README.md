@@ -52,3 +52,8 @@ cargo run --release
 // 打开文档，查看依赖包文档(经验证，执行以下命令，暂未看到依赖包相关信息，如果后续验证结果有变，再进行修改)
 cargo doc --open
 ```
+
+### 案例
+
+1. [guessing game](https://github.com/demos-platform/demos-of-rust/tree/main/guessing_game)
+2. [minigrep](https://github.com/demos-platform/demos-of-rust/tree/main/minigrep)
