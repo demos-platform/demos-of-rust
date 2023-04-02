@@ -56,4 +56,4 @@ cargo doc --open
 ### 案例
 
 1. [guessing game](https://github.com/demos-platform/demos-of-rust/tree/main/guessing_game)
-2. [minigrep](https://github.com/demos-platform/demos-of-rust/tree/main/minigrep)
+2. [编写命令行](https://github.com/demos-platform/demos-of-rust/tree/main/minigrep)
