@@ -4,17 +4,26 @@ use std::net::TcpStream;
 use std::net::TcpListener;
 use std::thread;
 use std::time::Duration;
+use hello::ThreadPool;
 
 fn main() {
     let listener = TcpListener::bind("127.0.0.1:7878").unwrap();
+    let pool = ThreadPool::new(4);
 
-    for stream in listener.incoming() {
+    // 目的：处理两个请求后退出循环并关闭服务器。此处使用 take(2) 限制迭代过程只会进行两次。
+    for stream in listener.incoming().take(2) {
+    // for stream in listener.incoming() {
         let stream = stream.unwrap();
 
-        thread::spawn(|| {
+        // thread::spawn(|| {
+        //     handle_connection(stream);
+        // });
+        pool.execute(|| {
             handle_connection(stream);
         });
     }
+
+    println!("Shutting down.");
 }
 
 fn handle_connection(mut stream: TcpStream) {
